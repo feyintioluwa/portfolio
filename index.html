@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Agounnon Matthew Feyintioluwa · Full-Stack Developer</title>
+<meta name="description" content="Full-stack developer building responsive web apps, AI-powered platforms and school management systems with Next.js, TypeScript and Supabase.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper:#f3f6f9; --card:#ffffff; --ink:#12203a; --muted:#566274; --line:#c9d3df;
+    --blue:#1d4f91; --tape:#f2b705; --tape-ink:#12203a; --grid:rgba(29,79,145,.07);
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) { --paper:#0e1726; --card:#142036; --ink:#e8eef7; --muted:#9aa8bc; --line:#2a3a55; --blue:#7fb0ee; --grid:rgba(127,176,238,.07); }
+  }
+  :root[data-theme="dark"] { --paper:#0e1726; --card:#142036; --ink:#e8eef7; --muted:#9aa8bc; --line:#2a3a55; --blue:#7fb0ee; --grid:rgba(127,176,238,.07); }
+  html { scroll-padding-top:env(safe-area-inset-top,0px); scroll-behavior:smooth; }
+  *, *::before, *::after { box-sizing:border-box; }
+  body { margin:0; background:var(--paper); color:var(--ink); font:400 16px/1.65 'IBM Plex Sans',system-ui,sans-serif;
+    background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px); background-size:32px 32px; }
+  a { color:var(--blue); text-underline-offset:3px; }
+  a:focus-visible, button:focus-visible { outline:3px solid var(--tape); outline-offset:2px; }
+  .wrap { max-width:960px; margin:0 auto; padding:0 24px; }
+  h1,h2,h3 { font-family:'Bricolage Grotesque','IBM Plex Sans',sans-serif; line-height:1.1; margin:0; }
+
+  header.top { display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between; align-items:center; padding:20px 0; }
+  header.top b { font-family:'Bricolage Grotesque',sans-serif; font-size:18px; }
+  nav { display:flex; flex-wrap:wrap; gap:4px 20px; font-size:15px; }
+  nav a { color:var(--ink); text-decoration:none; padding:4px 0; border-bottom:2px solid transparent; }
+  nav a:hover { border-color:var(--tape); }
+
+  /* Hero: drawing title block */
+  .hero { padding:48px 0 64px; }
+  .block { border:2px solid var(--ink); background:var(--card); display:grid; grid-template-columns:1fr 1fr; }
+  .block > div { padding:18px 20px; border-bottom:1px solid var(--line); }
+  .block .name { grid-column:1/-1; padding:32px 24px 28px; border-bottom:2px solid var(--ink); }
+  .block h1 { font-size:clamp(34px,7vw,64px); font-weight:700; letter-spacing:-.02em; }
+  .block .name p { margin:16px 0 0; max-width:34em; font-size:18px; color:var(--muted); }
+  .block small { display:block; font-size:13px; color:var(--muted); margin-bottom:2px; }
+  .block span { font-weight:500; }
+  .block > div:nth-child(odd):not(.name) { border-right:1px solid var(--line); }
+  .block > div:nth-last-child(-n+2) { border-bottom:0; }
+  .cta { display:flex; flex-wrap:wrap; gap:12px; margin-top:24px; }
+  .btn { display:inline-block; padding:12px 22px; font-weight:600; text-decoration:none; border:2px solid var(--ink); color:var(--ink); background:transparent; }
+  .btn.main { background:var(--tape); color:var(--tape-ink); }
+  .btn:hover { transform:translateY(-2px); transition:transform .15s; }
+
+  section { padding:56px 0; border-top:1px solid var(--line); }
+  h2 { font-size:clamp(26px,4vw,36px); margin-bottom:28px; display:inline-block; border-bottom:4px solid var(--tape); padding-bottom:4px; }
+  .about p { max-width:42em; margin:0 0 16px; font-size:18px; }
+
+  .project { display:grid; grid-template-columns:1fr; gap:6px; padding:28px 0; border-bottom:1px solid var(--line); }
+  .project:first-of-type { padding-top:0; }
+  .project h3 { font-size:24px; }
+  .stack { color:var(--muted); font-size:14px; font-style:italic; margin:0; }
+  .project ul { margin:12px 0 8px; padding-left:20px; max-width:46em; }
+  .project li { margin-bottom:8px; }
+  .links { display:flex; gap:20px; font-weight:600; }
+
+  .skills { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:0; border:2px solid var(--ink); background:var(--card); }
+  .skills div { padding:18px 20px; border-right:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .skills h3 { font-size:17px; margin-bottom:6px; }
+  .skills p { margin:0; color:var(--muted); font-size:15px; }
+
+  .row { display:grid; grid-template-columns:150px 1fr; gap:8px 24px; padding:0 0 28px; }
+  .row time { color:var(--muted); font-size:15px; }
+  .row h3 { font-size:21px; margin-bottom:6px; }
+  .row p, .row ul { margin:0; max-width:46em; }
+  .row ul { padding-left:20px; }
+  .row li { margin-bottom:8px; }
+  .sub { color:var(--muted); }
+
+  .contact p { max-width:36em; font-size:18px; margin:0 0 8px; }
+  footer { padding:28px 0 40px; border-top:2px solid var(--ink); color:var(--muted); font-size:14px; }
+  footer .wrap { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; }
+
+  @media (max-width:640px) {
+    .block { grid-template-columns:1fr; }
+    .block > div:nth-child(odd):not(.name) { border-right:0; }
+    .block > div:nth-last-child(2) { border-bottom:1px solid var(--line); }
+    .row { grid-template-columns:1fr; gap:2px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html{scroll-behavior:auto} .btn:hover{transform:none} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <b>A. M. Feyintioluwa</b>
+    <nav aria-label="Main">
+      <a href="#about">About</a><a href="#projects">Projects</a><a href="#skills">Skills</a><a href="#experience">Experience</a><a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <div class="block">
+        <div class="name">
+          <h1>Agounnon Matthew Feyintioluwa</h1>
+          <p>Full-stack developer who builds web apps people use every day: AI tools, result portals and school management systems.</p>
+          <div class="cta">
+            <a class="btn main" href="#projects">See my projects</a>
+            <a class="btn" href="mailto:feyin32@gmail.com">Email me</a>
+          </div>
+        </div>
+        <div><small>Role</small><span>Full-Stack Developer</span></div>
+        <div><small>Experience</small><span>Independent, since 2024</span></div>
+        <div><small>Works with</small><span>TypeScript, React, Next.js, Supabase</span></div>
+        <div><small>Also studying</small><span>HND Civil Engineering, YABATECH</span></div>
+      </div>
+    </div>
+
+    <section id="about" class="about">
+      <h2>About me</h2>
+      <p>I build responsive web applications, AI-powered platforms and school management systems with JavaScript, TypeScript, React, Next.js and Supabase (PostgreSQL).</p>
+      <p>I work across the whole stack: API integration, backend functionality, database design, secure authentication and deployment. My focus is practical, scalable web solutions that real users depend on.</p>
+    </section>
+
+    <section id="projects">
+      <h2>Projects</h2>
+
+      <article class="project">
+        <h3>De Kings Perfection Private School: School Portal</h3>
+        <p class="stack">Next.js · React · TypeScript · Supabase (PostgreSQL) · Vercel</p>
+        <ul>
+          <li>Rebuilt the school’s Google Sheets result portal as a Next.js and Supabase platform, with Login ID and hashed PIN sign-in, results by term, printing and failed-login lockout.</li>
+          <li>Built a computer-based testing system with timed tests and exams, autosaved answers, one attempt each, server-enforced deadlines and automatic marking.</li>
+          <li>Developed an admin portal to add students in bulk, upload scores from Excel, publish results and manage terms, tests and questions, secured with an admin key and Row Level Security.</li>
+          <li>Added a student dashboard with one sign-in for results, tests and assignments (JPG, PNG and PDF uploads).</li>
+        </ul>
+        <div class="links"><a href="https://dekps.vercel.app" target="_blank" rel="noopener">Live demo</a><a href="https://github.com/feyintioluwa/dekps-website" target="_blank" rel="noopener">GitHub</a></div>
+      </article>
+
+      <article class="project">
+        <h3>CVCommit: AI-Powered CV Analysis</h3>
+        <p class="stack">Next.js · TypeScript · React · Tailwind CSS · Gemini API · Supabase</p>
+        <ul>
+          <li>Built a platform that analyzes CVs across six hiring criteria, giving an overall score and actionable recommendations.</li>
+          <li>Implemented PDF and DOCX processing, text extraction, validation and Gemini-powered analysis through Next.js API routes, with CV fingerprinting and caching for speed.</li>
+          <li>Developed a CV improvement workflow backed by Supabase for data persistence.</li>
+        </ul>
+        <div class="links"><a href="https://cvcommit.vercel.app/" target="_blank" rel="noopener">Live demo</a><a href="https://github.com/feyintioluwa/cvcommit" target="_blank" rel="noopener">GitHub</a></div>
+      </article>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div><h3>Languages</h3><p>JavaScript, TypeScript, HTML5, CSS3</p></div>
+        <div><h3>Frontend</h3><p>React, Next.js, Tailwind CSS, Bootstrap</p></div>
+        <div><h3>Backend and APIs</h3><p>Node.js, Next.js API Routes, REST APIs, SQL functions</p></div>
+        <div><h3>Database</h3><p>Supabase (PostgreSQL, Row Level Security)</p></div>
+        <div><h3>AI and integrations</h3><p>Gemini API</p></div>
+        <div><h3>Tools</h3><p>Git, GitHub, Vercel, Netlify</p></div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience and education</h2>
+      <div class="row">
+        <time>2024 – Present</time>
+        <div>
+          <h3>Independent Full-Stack Developer</h3>
+          <ul>
+            <li>Develop and deploy full-stack web applications with JavaScript, TypeScript, React, Next.js, Tailwind CSS, Node.js and Supabase.</li>
+            <li>Built CVCommit, an AI-powered CV analysis platform, and a full school platform for De Kings Perfection Private School: result portal, student dashboard, computer-based tests and exams, assignments and an admin portal.</li>
+            <li>Implement REST API integrations, database operations, authentication workflows and server-side functionality, with Git and GitHub for version control and deployment.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="row">
+        <time>2026 – Present</time>
+        <div><h3>Higher National Diploma, Civil Engineering</h3><p class="sub">Yaba College of Technology (YABATECH), Lagos, Nigeria</p></div>
+      </div>
+      <div class="row">
+        <time>2023 – 2025</time>
+        <div><h3>National Diploma, Civil Engineering</h3><p class="sub">Yaba College of Technology (YABATECH), Lagos, Nigeria</p></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Get in touch</h2>
+      <p>Have a project, an internship or a freelance job in mind? Send me an email and I’ll reply as soon as I can.</p>
+      <div class="cta">
+        <a class="btn main" href="mailto:feyin32@gmail.com">feyin32@gmail.com</a>
+        <a class="btn" href="https://github.com/feyintioluwa" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/feyinti0luwa/" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+  </main>
+</div>
+<footer><div class="wrap"><span>Agounnon Matthew Feyintioluwa</span><span>Full-Stack Developer</span></div></footer>
+</body>
+</html>
