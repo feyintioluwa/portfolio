@@ -234,6 +234,33 @@
       .project li {
         margin-bottom: 8px;
       }
+
+      .shots {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 16px;
+        margin: 16px 0 8px;
+      }
+      .shots figure {
+        margin: 0;
+      }
+      .shots a {
+        display: block;
+        border: 2px solid var(--ink);
+        background: var(--card);
+        line-height: 0;
+      }
+      .shots img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .shots figcaption {
+        font-size: 14px;
+        color: var(--muted);
+        margin-top: 8px;
+        line-height: 1.45;
+      }
       .links {
         display: flex;
         gap: 20px;
@@ -342,8 +369,8 @@
           <a href="#about">About</a><a href="#projects">Projects</a
           ><a href="#skills">Skills</a><a href="#experience">Experience</a
           ><a href="#contact">Contact</a
-          ><a href="Agounnon-Matthew-CV.pdf" download="Agounnon-Matthew-CV.pdf"
-            >Download CV</a
+          ><a href="Agounnon-Matthew-CV.pdf" target="_blank" rel="noopener"
+            >View CV</a
           >
         </nav>
       </header>
@@ -421,6 +448,72 @@
                 and assignments (JPG, PNG and PDF uploads).
               </li>
             </ul>
+            <div class="shots">
+              <figure>
+                <a
+                  href="images/dkps-1-results.webp"
+                  target="_blank"
+                  rel="noopener"
+                  ><img
+                    src="images/dkps-1-results.webp"
+                    width="1200"
+                    height="682"
+                    loading="lazy"
+                    alt="Printable student result sheet showing subjects, CA, exam, total and grade"
+                /></a>
+                <figcaption>
+                  A printable student result with CA, exam, total and grade for
+                  every subject.
+                </figcaption>
+              </figure>
+              <figure>
+                <a
+                  href="images/dkps-2-dashboard.webp"
+                  target="_blank"
+                  rel="noopener"
+                  ><img
+                    src="images/dkps-2-dashboard.webp"
+                    width="1200"
+                    height="682"
+                    loading="lazy"
+                    alt="Student dashboard with results, tests and assignments cards"
+                /></a>
+                <figcaption>
+                  One sign-in for results, tests and assignments.
+                </figcaption>
+              </figure>
+              <figure>
+                <a href="images/dkps-3-cbt.webp" target="_blank" rel="noopener"
+                  ><img
+                    src="images/dkps-3-cbt.webp"
+                    width="1200"
+                    height="682"
+                    loading="lazy"
+                    alt="Timed computer-based test with a question navigator"
+                /></a>
+                <figcaption>
+                  A timed test, one question at a time, with a question
+                  navigator.
+                </figcaption>
+              </figure>
+              <figure>
+                <a
+                  href="images/dkps-4-admin-terms.webp"
+                  target="_blank"
+                  rel="noopener"
+                  ><img
+                    src="images/dkps-4-admin-terms.webp"
+                    width="1200"
+                    height="682"
+                    loading="lazy"
+                    alt="Admin portal terms page with sessions grouped and collapsible"
+                /></a>
+                <figcaption>
+                  Admin portal: sessions grouped with their terms, plus lock and
+                  make-current controls.
+                </figcaption>
+              </figure>
+            </div>
             <div class="links">
               <a href="https://dekps.vercel.app" target="_blank" rel="noopener"
                 >Live demo</a
@@ -454,6 +547,40 @@
                 persistence.
               </li>
             </ul>
+            <div class="shots">
+              <figure>
+                <a
+                  href="images/cvcommit-1-upload.webp"
+                  target="_blank"
+                  rel="noopener"
+                  ><img
+                    src="images/cvcommit-1-upload.webp"
+                    width="1200"
+                    height="682"
+                    loading="lazy"
+                    alt="CVCommit upload page for PDF or DOCX files"
+                /></a>
+                <figcaption>
+                  The upload page accepts PDF or DOCX files up to 10 MB.
+                </figcaption>
+              </figure>
+              <figure>
+                <a
+                  href="images/cvcommit-2-score.webp"
+                  target="_blank"
+                  rel="noopener"
+                  ><img
+                    src="images/cvcommit-2-score.webp"
+                    width="1200"
+                    height="682"
+                    loading="lazy"
+                    alt="CVCommit report with overall score and executive summary"
+                /></a>
+                <figcaption>
+                  The report gives an overall score and a written summary.
+                </figcaption>
+              </figure>
+            </div>
             <div class="links">
               <a
                 href="https://cvcommit.vercel.app/"
