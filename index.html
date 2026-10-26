@@ -9,6 +9,18 @@
     <meta
       name="description"
       content="Full-stack developer building responsive web apps, AI-powered platforms and school management systems with Next.js, TypeScript and Supabase." />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:title"
+      content="Agounnon Matthew Feyintioluwa · Full-Stack Developer" />
+    <meta
+      property="og:description"
+      content="Web apps people use every day: AI tools, result portals and school management systems." />
+    <meta name="twitter:card" content="summary" />
+    <meta name="theme-color" content="#12203a" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%23f2b705'/%3E%3Ctext x='32' y='45' font-size='38' font-family='Arial' font-weight='700' text-anchor='middle' fill='%2312203a'%3EM%3C/text%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -160,7 +172,8 @@
       .block span {
         font-weight: 500;
       }
-      .block > div:nth-child(odd):not(.name) {
+      /* the divider belongs on the LEFT column cells (the even ones) */
+      .block > div:nth-child(even) {
         border-right: 1px solid var(--line);
       }
       .block > div:nth-last-child(-n + 2) {
@@ -180,6 +193,7 @@
         border: 2px solid var(--ink);
         color: var(--ink);
         background: transparent;
+        transition: transform 0.15s;
       }
       .btn.main {
         background: var(--tape);
@@ -187,7 +201,6 @@
       }
       .btn:hover {
         transform: translateY(-2px);
-        transition: transform 0.15s;
       }
 
       section {
@@ -267,17 +280,17 @@
         font-weight: 600;
       }
 
+      /* skills: thin 1px lines between cells, one outer border */
       .skills {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-        gap: 0;
+        gap: 1px;
         border: 2px solid var(--ink);
-        background: var(--card);
+        background: var(--line);
       }
       .skills div {
         padding: 18px 20px;
-        border-right: 1px solid var(--line);
-        border-bottom: 1px solid var(--line);
+        background: var(--card);
       }
       .skills h3 {
         font-size: 17px;
@@ -340,7 +353,7 @@
         .block {
           grid-template-columns: 1fr;
         }
-        .block > div:nth-child(odd):not(.name) {
+        .block > div:nth-child(even) {
           border-right: 0;
         }
         .block > div:nth-last-child(2) {
@@ -354,6 +367,9 @@
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
+        }
+        .btn {
+          transition: none;
         }
         .btn:hover {
           transform: none;
@@ -369,7 +385,11 @@
           <a href="#about">About</a><a href="#projects">Projects</a
           ><a href="#skills">Skills</a><a href="#experience">Experience</a
           ><a href="#contact">Contact</a
-          ><a href="AGOUNNON_MATTHEW_CV.pdf" target="_blank" rel="noopener"
+          ><a
+            href="AGOUNNON_MATTHEW_CV.pdf"
+            type="application/pdf"
+            target="_blank"
+            rel="noopener"
             >View CV</a
           >
         </nav>
@@ -387,6 +407,12 @@
               <div class="cta">
                 <a class="btn main" href="#projects">See my projects</a>
                 <a class="btn" href="mailto:feyin32@gmail.com">Email me</a>
+                <a
+                  class="btn"
+                  href="AGOUNNON_MATTHEW_CV.pdf"
+                  download="AGOUNNON_MATTHEW_CV.pdf"
+                  >Download CV</a
+                >
               </div>
             </div>
             <div><small>Role</small><span>Full-Stack Developer</span></div>
@@ -515,12 +541,17 @@
               </figure>
             </div>
             <div class="links">
-              <a href="https://dekps.vercel.app" target="_blank" rel="noopener"
+              <a
+                href="https://dekps.vercel.app"
+                target="_blank"
+                rel="noopener"
+                aria-label="Live demo of the school portal"
                 >Live demo</a
               ><a
                 href="https://github.com/feyintioluwa/dekps-website"
                 target="_blank"
                 rel="noopener"
+                aria-label="GitHub repository for the school portal"
                 >GitHub</a
               >
             </div>
@@ -586,11 +617,13 @@
                 href="https://cvcommit.vercel.app/"
                 target="_blank"
                 rel="noopener"
+                aria-label="Live demo of CVCommit"
                 >Live demo</a
               ><a
                 href="https://github.com/feyintioluwa/cvcommit"
                 target="_blank"
                 rel="noopener"
+                aria-label="GitHub repository for CVCommit"
                 >GitHub</a
               >
             </div>
@@ -682,6 +715,12 @@
           <div class="cta">
             <a class="btn main" href="mailto:feyin32@gmail.com"
               >feyin32@gmail.com</a
+            >
+            <a
+              class="btn"
+              href="AGOUNNON_MATTHEW_CV.pdf"
+              download="AGOUNNON_MATTHEW_CV.pdf"
+              >Download CV</a
             >
             <a
               class="btn"
