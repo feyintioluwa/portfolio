@@ -1,0 +1,19 @@
+# Hi, I'm Matthew
+
+**Full-stack developer, backend-focused.** I build web apps, APIs and AI-powered products, and deploy them for real users.
+
+## Projects
+
+- **CVCommit** is an AI-powered CV analysis platform. It extracts text from PDF and DOCX files, analyses it with the Gemini API, and returns a scored career report. The app validates and owns the scoring.
+  [Live](https://cvcommit.vercel.app) · [Code](https://github.com/feyintioluwa/cvcommit)
+- **DKPS School Portal** is a system for a real school. It has student results, timed online tests and exams, assignments with file uploads, and an admin portal. Built with Next.js and Supabase (Postgres), with server-side security.
+  Case study coming soon.
+
+## Tech
+
+JavaScript · TypeScript · React · Next.js · Node.js · Tailwind CSS · Supabase · REST APIs · Gemini API · Git · Vercel
+
+## Contact
+
+- Email: feyin32@gmail.com
+- LinkedIn: https://linkedin.com/in/feyinti0luwa
