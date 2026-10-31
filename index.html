@@ -250,9 +250,25 @@
 
       .shots {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
         gap: 16px;
-        margin: 16px 0 8px;
+        margin: 8px 0 8px;
+      }
+      .hint {
+        margin: 14px 0 0;
+        font-size: 14px;
+        color: var(--muted);
+      }
+      .hint .touch {
+        display: none;
+      }
+      @media (hover: none) {
+        .hint .mouse {
+          display: none;
+        }
+        .hint .touch {
+          display: inline;
+        }
       }
       .shots figure {
         margin: 0;
@@ -262,6 +278,7 @@
         border: 2px solid var(--ink);
         background: var(--card);
         line-height: 0;
+        cursor: zoom-in;
       }
       .shots img {
         width: 100%;
@@ -363,7 +380,75 @@
           grid-template-columns: 1fr;
           gap: 2px;
         }
+        .shots {
+          grid-template-columns: 1fr;
+        }
       }
+      /* screenshot pop-out: hover preview on a computer, tap to open on a phone */
+      .lb {
+        position: fixed;
+        inset: 0;
+        z-index: 100;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 3vh 3vw;
+        background: rgba(10, 16, 28, 0.8);
+      }
+      .lb.open {
+        display: flex;
+      }
+      .lb.peek {
+        pointer-events: none;
+        background: rgba(10, 16, 28, 0.6);
+      }
+      .lb figure {
+        margin: 0;
+        position: relative;
+        max-width: min(1240px, 94vw);
+      }
+      .lb img {
+        display: block;
+        max-width: 100%;
+        max-height: 80vh;
+        width: auto;
+        height: auto;
+        margin: 0 auto;
+        background: var(--card);
+        border: 3px solid var(--card);
+        box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+      }
+      .lb figcaption {
+        color: #fff;
+        text-align: center;
+        font-size: 15px;
+        margin-top: 12px;
+        line-height: 1.4;
+      }
+      .lb .lb-close {
+        position: absolute;
+        top: -14px;
+        right: -14px;
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--ink);
+        background: var(--tape);
+        color: var(--tape-ink);
+        font:
+          700 22px/1 system-ui,
+          sans-serif;
+        cursor: pointer;
+      }
+      .lb.peek .lb-close {
+        display: none;
+      }
+      @media (max-width: 640px) {
+        .lb .lb-close {
+          top: -18px;
+          right: -4px;
+        }
+      }
+
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -425,7 +510,7 @@
             </div>
             <div>
               <small>Also studying</small
-              ><span>HND Civil Engineering, YABATECH</span>
+              ><span>Civil Engineering, YABATECH (HND)</span>
             </div>
           </div>
         </div>
@@ -474,6 +559,13 @@
                 and assignments (JPG, PNG and PDF uploads).
               </li>
             </ul>
+            <p class="hint">
+              <span class="mouse"
+                >Hover over a screenshot to enlarge it, or click to keep it
+                open.</span
+              >
+              <span class="touch">Tap a screenshot to enlarge it.</span>
+            </p>
             <div class="shots">
               <figure>
                 <a
@@ -578,6 +670,13 @@
                 persistence.
               </li>
             </ul>
+            <p class="hint">
+              <span class="mouse"
+                >Hover over a screenshot to enlarge it, or click to keep it
+                open.</span
+              >
+              <span class="touch">Tap a screenshot to enlarge it.</span>
+            </p>
             <div class="shots">
               <figure>
                 <a
@@ -746,5 +845,88 @@
         ><span>Full-Stack Developer</span>
       </div>
     </footer>
+    <div
+      class="lb"
+      id="lb"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Screenshot preview">
+      <figure>
+        <button type="button" class="lb-close" aria-label="Close preview">
+          ×
+        </button>
+        <img id="lb-img" alt="" />
+        <figcaption id="lb-cap"></figcaption>
+      </figure>
+    </div>
+    <script>
+      (function () {
+        var lb = document.getElementById("lb");
+        var img = document.getElementById("lb-img");
+        var cap = document.getElementById("lb-cap");
+        var closeBtn = lb.querySelector(".lb-close");
+        var canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
+        var timer = null;
+        var current = null;
+
+        function fill(a) {
+          var thumb = a.querySelector("img");
+          var c = a.parentNode.querySelector("figcaption");
+          img.src = a.getAttribute("href");
+          img.alt = thumb ? thumb.alt : "";
+          cap.textContent = c ? c.textContent.replace(/\s+/g, " ").trim() : "";
+        }
+        function open(a, peek) {
+          fill(a);
+          current = a;
+          lb.classList.add("open");
+          lb.classList.toggle("peek", peek);
+          document.documentElement.style.overflow = peek ? "" : "hidden";
+          if (!peek) closeBtn.focus();
+        }
+        function close() {
+          clearTimeout(timer);
+          lb.classList.remove("open", "peek");
+          document.documentElement.style.overflow = "";
+          img.removeAttribute("src");
+          if (current && document.activeElement === closeBtn) current.focus();
+        }
+
+        Array.prototype.forEach.call(
+          document.querySelectorAll(".shots a"),
+          function (a) {
+            a.addEventListener("mouseenter", function () {
+              if (!canHover.matches) return;
+              new Image().src = a.getAttribute("href"); // start loading the big picture
+              clearTimeout(timer);
+              timer = setTimeout(function () {
+                if (!lb.classList.contains("open")) open(a, true);
+              }, 160);
+            });
+            a.addEventListener("mouseleave", function () {
+              clearTimeout(timer);
+              if (lb.classList.contains("peek")) close();
+            });
+            a.addEventListener("click", function (e) {
+              e.preventDefault(); // stay on the page instead of opening a new tab
+              clearTimeout(timer);
+              open(a, false);
+            });
+          },
+        );
+
+        lb.addEventListener("click", function (e) {
+          if (e.target === lb || e.target === closeBtn) close();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (!lb.classList.contains("open")) return;
+          if (e.key === "Escape") close();
+          if (e.key === "Tab") {
+            e.preventDefault();
+            closeBtn.focus();
+          }
+        });
+      })();
+    </script>
   </body>
 </html>
