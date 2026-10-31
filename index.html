@@ -561,8 +561,8 @@
             </ul>
             <p class="hint">
               <span class="mouse"
-                >Hover over a screenshot to enlarge it, or click to keep it
-                open.</span
+                >Click a screenshot to enlarge it. Press Esc or click anywhere
+                outside it to close.</span
               >
               <span class="touch">Tap a screenshot to enlarge it.</span>
             </p>
@@ -672,8 +672,8 @@
             </ul>
             <p class="hint">
               <span class="mouse"
-                >Hover over a screenshot to enlarge it, or click to keep it
-                open.</span
+                >Click a screenshot to enlarge it. Press Esc or click anywhere
+                outside it to close.</span
               >
               <span class="touch">Tap a screenshot to enlarge it.</span>
             </p>
@@ -895,18 +895,6 @@
         Array.prototype.forEach.call(
           document.querySelectorAll(".shots a"),
           function (a) {
-            a.addEventListener("mouseenter", function () {
-              if (!canHover.matches) return;
-              new Image().src = a.getAttribute("href"); // start loading the big picture
-              clearTimeout(timer);
-              timer = setTimeout(function () {
-                if (!lb.classList.contains("open")) open(a, true);
-              }, 160);
-            });
-            a.addEventListener("mouseleave", function () {
-              clearTimeout(timer);
-              if (lb.classList.contains("peek")) close();
-            });
             a.addEventListener("click", function (e) {
               e.preventDefault(); // stay on the page instead of opening a new tab
               clearTimeout(timer);
@@ -916,7 +904,8 @@
         );
 
         lb.addEventListener("click", function (e) {
-          if (e.target === lb || e.target === closeBtn) close();
+          if (e.target === lb || e.target === closeBtn || e.target === img)
+            close();
         });
         document.addEventListener("keydown", function (e) {
           if (!lb.classList.contains("open")) return;
